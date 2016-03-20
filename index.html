@@ -1,0 +1,72 @@
+<html ng-app="projectile">
+	<head>
+		<title>Simple Projectile Simulator</title>
+
+		<script src="public/angular.min.js"></script>
+		<script src="public/Chart.min.js"></script>
+		<script src="public/angular-chart.min.js"></script>
+		<link rel="stylesheet" href="public/bootstrap.min.css">
+		<link rel="stylesheet" href="public/angular-chart.min.css">
+	</head>
+	<body ng-controller="mainController" style="text-align:center; padding:20px;">
+		<h1>{ Simple Projectile Simulator }</h1>
+		<div class="container-fluid row">
+			<!-- Graph -->
+			<div class="col-sm-10">
+				<canvas id="line" class="chart chart-line" chart-data="yData"
+				  chart-labels="xData" chart-series="series" style="margin-top:40px;">
+				</canvas> 
+			</div>
+			<!-- Setting -->
+			<div class="col-sm-2" style="text-align:left;">
+				<h3>Property:</h3>
+				
+				<!-- Form -->
+				<form>
+				  <div class="form-group form-group-sm">
+					<label>X start position</label>
+					<input type="number" class="form-control" ng-model="x">
+				  </div>
+				  <div class="form-group form-group-sm">
+					<label>Y start position</label>
+					<input type="number" class="form-control" ng-model="y">
+				  </div>
+				  <div class="form-group form-group-sm">
+					<label>Initial speed (m/s)</label>
+					<input type="number" class="form-control" ng-model="v"  step="5">
+				  </div>
+				  <div class="form-group form-group-sm">
+					<label>Angle (degree)</label>
+					<input type="number" class="form-control" ng-model="angle" step="5">
+				  </div>
+				  <div class="form-group form-group-sm">
+					<label>Mass (g)</label>
+					<input type="number" class="form-control" ng-model="m" step="10">
+				  </div>
+				  <div class="form-group form-group-sm">
+					<label>Print interval (every X)</label>
+					<input type="number" class="form-control" ng-model="interval" step="0.1">
+				  </div>
+				  <div class="checkbox form-group-sm">
+					  <label>
+						<input type="checkbox" ng-model="drag">
+						Air resistance
+					  </label>
+					</div>
+				  <div class="form-group form-group-sm">
+					<label>Cross sectional area, A (m<sup>2</sup>)</label>
+					<input type="number" class="form-control" ng-model="a" ng-disabled="!drag"  step="0.1">
+				  </div>
+				
+				  <button type="submit" class="btn btn-primary" ng-click="calculate(m,x,y,v,angle,h,interval,a)">Submit</button>
+				</form><!-- End of Form -->
+				
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<div style="margin-top:20px;">&copy; Th1nk.K1D 2016 - All right reserved.</div>
+		<!-- Angular -->
+		<script src="projectile.js"></script>
+	</body>
+</html>
